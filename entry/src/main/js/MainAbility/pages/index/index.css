@@ -1,11 +1,29 @@
-.container {
-  width: 100%;
-  height: 100%;
-  justify-content: center;
+.page {
+  width: 466px;
+  height: 466px;
+  background-color: #F2F2F7;
+  flex-direction: column;
   align-items: center;
 }
-.title {
-  width: 200px;
-  font-size: 30px;
-  text-align: center;
-}
+.time { margin-top: 20px; color: #1C1C1E; font-size: 16px; font-weight: 500; }
+.page-title { margin-top: 6px; color: #1C1C1E; font-size: 24px; font-weight: 500; }
+.progress-ring { width: 222px; height: 134px; margin-top: 12px; position: relative; justify-content: center; align-items: center; }
+.progress-track { width: 210px; height: 118px; border-radius: 108px; border-width: 8px; border-color: #E5E5EA; }
+.progress-value { width: 210px; height: 118px; position: absolute; border-radius: 108px; border-top-width: 8px; border-right-width: 8px; border-color: #0A84FF; transform: rotate(12deg); }
+.progress-content { position: absolute; align-items: center; justify-content: center; }
+.eyebrow { color: #636366; font-size: 14px; }
+.amount-row { flex-direction: row; align-items: baseline; }
+.amount { color: #1C1C1E; font-size: 42px; font-weight: 500; }
+.amount-unit { color: #1C1C1E; font-size: 17px; margin-left: 5px; }
+.progress-label { color: #636366; font-size: 14px; }
+.cup-wrap { width: 78px; height: 86px; margin-top: -8px; position: relative; overflow: hidden; }
+.cup-outline { width: 66px; height: 78px; margin-left: 6px; border-width: 3px; border-color: #C7C7CC; border-radius: 4px 4px 14px 14px; }
+.water-fill { width: 60px; height: 43px; position: absolute; left: 9px; bottom: 4px; background-color: #72B7FF; border-radius: 9px 9px 12px 12px; }
+.water-surface { width: 60px; height: 12px; position: absolute; left: 9px; bottom: 40px; background-color: #9BCDFF; border-radius: 50%; }
+.water-moving { transform: translateX(4px); }
+.primary-button { width: 240px; height: 60px; margin-top: 12px; border-radius: 30px; background-color: #0A84FF; color: #FFFFFF; font-size: 22px; }
+.status-text { height: 20px; margin-top: 8px; color: #636366; font-size: 14px; }
+.bottom-actions { width: 184px; margin-top: 8px; flex-direction: row; justify-content: space-between; }
+.action { width: 72px; height: 54px; flex-direction: column; align-items: center; justify-content: center; }
+.action-icon { width: 24px; height: 24px; }
+.action-text { margin-top: 3px; color: #1C1C1E; font-size: 14px; }
