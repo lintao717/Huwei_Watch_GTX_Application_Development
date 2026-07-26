@@ -2,26 +2,23 @@
     <text class="time">10:08</text>
     <text class="page-title">{{ title }}</text>
 
-    <div class="progress-ring">
-        <div class="progress-track"></div>
-        <div class="progress-value"></div>
-        <div class="progress-content">
-            <text class="eyebrow">今日已喝</text>
-            <div class="amount-row">
-                <text class="amount">{{ totalMl }}</text>
-                <text class="amount-unit">/ {{ targetMl }} mL</text>
-            </div>
-            <text class="progress-label">{{ progressText }} · 今日进度</text>
+    <div class="progress-card">
+        <text class="eyebrow">今日已喝</text>
+        <div class="amount-row">
+            <text class="amount">{{ totalMl }}</text>
+            <text class="amount-unit">/ {{ targetMl }} mL</text>
         </div>
+        <text class="progress-label">{{ progressText }} · 今日进度</text>
     </div>
 
     <div class="cup-wrap">
         <div class="cup-outline"></div>
-        <div class="water-fill {{ isWaterMoving ? 'water-moving' : '' }}"></div>
-        <div class="water-surface"></div>
+        <div class="water-fill"></div>
     </div>
 
-    <button class="primary-button" onclick="onAddWater">+{{ defaultAmountMl }} mL</button>
+    <div class="primary-button" onclick="onAddWater">
+        <text class="primary-button-text">+{{ defaultAmountMl }} mL</text>
+    </div>
     <text class="status-text">{{ statusText }}</text>
 
     <div class="bottom-actions">
