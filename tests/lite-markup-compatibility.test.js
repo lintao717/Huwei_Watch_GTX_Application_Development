@@ -14,6 +14,10 @@ assert(!hml.includes('<div class="actions">'), 'Bottom actions must stay flat be
 assert(!hml.includes("{{ isWaterMoving ?"), 'Lite Wearable class selectors must not use data binding.');
 assert(hml.includes('{{ totalMl }}'), 'The drink total must be rendered as HML page state.');
 assert(hml.includes('onclick="onAddWater"'), 'The primary action must be a real HML click target.');
-assert(hml.includes('class="progress-ring"'), 'The progress ring must be a real image element because Lite Wearable ignored CSS background images here.');
+assert(hml.includes('<canvas ref="progressCanvas"'), 'The progress ring should be drawn with Lite Wearable canvas for a crisp dynamic arc.');
+assert(!hml.includes('home_progress_ring.png'), 'The home progress ring must not be a static PNG texture.');
+assert(hml.includes('/common/images/water_drop.svg'), 'The inline progress droplet should verify SVG image support.');
+assert(hml.includes('/common/images/history.svg'), 'The record action should verify SVG image support.');
+assert(hml.includes('/common/images/settings.svg'), 'The settings action should verify SVG image support.');
 assert(!css.includes('background-image:'), 'The home screen must not rely on CSS background images for critical visuals.');
 console.log('Lite Wearable markup compatibility passes.');

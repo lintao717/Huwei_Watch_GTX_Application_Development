@@ -131,18 +131,13 @@ const amountRule = cssRule('.amount');
 const amountFontSize = Number(amountRule.match(/font-size:\s*(\d+)px/)[1]);
 assert(amountFontSize >= 48, 'The main drink number should have stronger visual weight.');
 
-const waterDrop = readPng(path.join(imageDirectory, 'water_drop.png'));
-assert.strictEqual(waterDrop.width, 48, 'water_drop.png should keep a 48px source size for clean downscaling.');
-assert.strictEqual(waterDrop.height, 48, 'water_drop.png should keep a 48px source size for clean downscaling.');
-const bluePixels = countPixels(waterDrop, (r, g, b, a) => a > 80 && b > 180 && g > 100 && r < 80);
-assert(bluePixels > 250, 'water_drop.png should render as the blue brand droplet, not a gray mark.');
+['water_drop.svg', 'history.svg', 'settings.svg'].forEach((fileName) => {
+    const svg = fs.readFileSync(path.join(imageDirectory, fileName), 'utf8');
+    assert(svg.includes('<svg'), fileName + ' must be an SVG asset.');
+    assert(svg.includes('viewBox="0 0 24 24"'), fileName + ' must use the 24px icon viewBox.');
+});
 
-const progressRing = readPng(path.join(imageDirectory, 'home_progress_ring.png'));
-assert.strictEqual(progressRing.width, 454, 'home_progress_ring.png should match the 454px artboard.');
-assert.strictEqual(progressRing.height, 454, 'home_progress_ring.png should match the 454px artboard.');
-const ringBluePixels = countPixels(progressRing, (r, g, b, a) => a > 80 && b > 180 && g > 90 && r < 80);
-assert(ringBluePixels > 3800, 'The progress ring should contain a clear blue rounded arc.');
-const ringBlueBounds = pixelBounds(progressRing, (r, g, b, a) => a > 80 && b > 180 && g > 90 && r < 80);
-assert(ringBlueBounds.maxX >= 438, 'The blue progress arc should sit close to the circular watch face edge.');
+const waterDropSvg = fs.readFileSync(path.join(imageDirectory, 'water_drop.svg'), 'utf8');
+assert(waterDropSvg.includes('#0A84FF'), 'water_drop.svg should render as the blue brand droplet.');
 
 console.log('Home visual asset checks pass.');
