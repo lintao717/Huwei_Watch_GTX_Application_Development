@@ -1,2 +1,17 @@
 .page { width: 100%; height: 100%; background-color: #F8F8FC; align-items: center; justify-content: center; }
-.home-screen { width: 100%; height: 100%; }
+.home-stage { width: 454px; height: 454px; align-items: center; justify-content: center; }
+.progress-ring { width: 454px; height: 454px; }
+.content { width: 350px; height: 410px; flex-direction: column; align-items: center; }
+.time { margin-top: 12px; color: #1C1C1E; font-size: 18px; }
+.metric { width: 350px; margin-top: 83px; flex-direction: column; align-items: center; }
+.amount { color: #1C1C1E; font-size: 42px; }
+.target { margin-top: 4px; color: #8E8E93; font-size: 22px; }
+.progress-row { height: 30px; margin-top: 10px; flex-direction: row; align-items: center; justify-content: center; }
+.drop { width: 12px; height: 12px; }
+.progress-text { margin-left: 8px; color: #8E8E93; font-size: 20px; }
+.add-button { width: 268px; height: 60px; margin-top: 34px; border-radius: 30px; background-color: #0A84FF; align-items: center; justify-content: center; }
+.add-text { color: #FFFFFF; font-size: 25px; }
+.actions { width: 210px; margin-top: 30px; flex-direction: row; justify-content: space-between; }
+.action { width: 86px; height: 30px; flex-direction: row; align-items: center; justify-content: center; }
+.action-icon { width: 22px; height: 22px; }
+.action-text { margin-left: 8px; color: #3A3A3C; font-size: 21px; }

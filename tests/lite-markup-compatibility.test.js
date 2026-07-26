@@ -9,5 +9,6 @@ const hml = fs.readFileSync('entry/src/main/js/MainAbility/pages/index/index.hml
 });
 assert(!hml.includes('<button'), 'Lite Wearable HML must use tappable div elements, not button tags.');
 assert(!hml.includes("{{ isWaterMoving ?"), 'Lite Wearable class selectors must not use data binding.');
-assert(hml.includes('/common/images/home_screen_default.png'), 'Lite Wearable must render the tested local 454px home visual.');
+assert(hml.includes('{{ totalMl }}'), 'The drink total must be rendered as HML page state.');
+assert(hml.includes('onclick="onAddWater"'), 'The primary action must be a real HML click target.');
 console.log('Lite Wearable markup compatibility passes.');

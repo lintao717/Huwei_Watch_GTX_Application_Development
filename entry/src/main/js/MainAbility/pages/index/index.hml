@@ -1,3 +1,21 @@
 <div class="page">
-    <image class="home-screen" src="/common/images/home_screen_default.png" onclick="onAddWater"></image>
+    <stack class="home-stage">
+        <image class="progress-ring" src="/common/images/home_progress_ring.png"></image>
+        <div class="content">
+            <text class="time">10:08</text>
+            <div class="metric">
+                <text class="amount">{{ totalMl }}</text>
+                <text class="target">/ {{ targetMl }} mL</text>
+                <div class="progress-row">
+                    <image class="drop" src="/common/images/water_drop.png"></image>
+                    <text class="progress-text">{{ progressText }} · 今日进度</text>
+                </div>
+            </div>
+            <div class="add-button" onclick="onAddWater"><text class="add-text">+{{ defaultAmountMl }} mL</text></div>
+            <div class="actions">
+                <div class="action" onclick="onOpenHistory"><image class="action-icon" src="/common/images/history.png"></image><text class="action-text">记录</text></div>
+                <div class="action" onclick="onOpenSettings"><image class="action-icon" src="/common/images/settings.png"></image><text class="action-text">设置</text></div>
+            </div>
+        </div>
+    </stack>
 </div>
