@@ -147,17 +147,4 @@ const waterDrop = readPng(path.join(imageDirectory, 'water_drop.png'));
 const bluePixels = countPixels(waterDrop, (r, g, b, a) => a > 80 && b > 180 && g > 100 && r < 80);
 assert(bluePixels > 1000, 'water_drop.png should render as the blue brand droplet, not a gray mark.');
 
-['000', '060', '090', '100'].forEach((percent) => {
-    const ring = readPng(path.join(imageDirectory, 'progress_ring_' + percent + '.png'));
-    assert.strictEqual(ring.width, 454, 'progress_ring_' + percent + '.png should match the watch design width.');
-    assert.strictEqual(ring.height, 454, 'progress_ring_' + percent + '.png should match the watch design height.');
-});
-
-const progressRing90 = readPng(path.join(imageDirectory, 'progress_ring_090.png'));
-const progressRing90BlueBounds = pixelBounds(progressRing90, (r, g, b, a) => a > 120 && r < 40 && g > 100 && b > 200);
-assert(progressRing90BlueBounds.minY <= 1, 'The 90% ring should touch the top edge.');
-assert(progressRing90BlueBounds.maxX >= 452, 'The 90% ring should touch the right edge.');
-assert(progressRing90BlueBounds.maxY >= 452, 'The 90% ring should touch the bottom edge.');
-assert(progressRing90BlueBounds.minX <= 1, 'The 90% ring should touch the left edge.');
-
 console.log('Home visual asset checks pass.');

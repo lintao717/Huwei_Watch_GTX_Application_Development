@@ -1,5 +1,5 @@
 .page { width: 454px; height: 454px; background-color: #FFFFFF; border-radius: 227px; align-items: flex-start; justify-content: flex-start; }
-.progress-ring { width: 454px; height: 454px; margin-left: 0px; margin-top: 0px; }
+.progress-canvas { width: 454px; height: 454px; margin-left: 0px; margin-top: 0px; background-color: #FFFFFF; border-radius: 227px; }
 .time { width: 80px; height: 24px; margin-left: 187px; margin-top: 26px; color: #1C1C1E; font-size: 18px; text-align: center; }
 .amount { width: 148px; height: 64px; margin-left: 99px; margin-top: 119px; color: #1C1C1E; font-size: 49px; text-align: right; }
 .target { width: 118px; height: 32px; margin-left: 254px; margin-top: 146px; color: #8E8E93; font-size: 22px; }

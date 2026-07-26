@@ -1,5 +1,5 @@
 <stack class="page">
-    <image class="progress-ring" src="{{ progressRingSrc }}"></image>
+    <canvas ref="progressCanvas" class="progress-canvas"></canvas>
     <text class="time">10:08</text>
     <text class="amount">{{ totalMl }}</text>
     <text class="target">/ {{ targetMl }} mL</text>
