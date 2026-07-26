@@ -4,6 +4,7 @@ export default {
         totalMl: 1200,
         targetMl: 2000,
         progressText: '60%',
+        progressRingSrc: '/common/images/progress_ring_060.png',
         defaultAmountMl: 200,
         isWaterMoving: false,
         statusText: '下一次提醒 15:30'
@@ -11,77 +12,15 @@ export default {
     onInit() {
         this.updateProgress();
     },
-    onShow() {
-        this.drawProgressRing();
-    },
     updateProgress() {
         const progress = Math.min(100, Math.round(this.totalMl / this.targetMl * 100));
         this.progressText = progress + '%';
-    },
-    drawProgressRing() {
-        if (!this.$refs || !this.$refs.progressCanvas) {
-            return;
-        }
-
-        const canvas = this.$refs.progressCanvas;
-        const ctx = canvas.getContext('2d');
-        const progress = Math.min(100, Math.max(0, Math.round(this.totalMl / this.targetMl * 100)));
-        const center = 227;
-        const ringRadius = 217;
-        const ringWidth = 20;
-        const fullCircle = Math.PI * 2;
-        const tinyGap = 0.18;
-        const startAngle = -Math.PI / 2;
-        const maxSweep = fullCircle - tinyGap;
-        const endAngle = startAngle + maxSweep * progress / 100;
-
-        ctx.beginPath();
-        ctx.lineWidth = ringWidth;
-        ctx.lineCap = 'round';
-        ctx.strokeStyle = '#E8E8E8';
-        ctx.arc(center, center, ringRadius, 0, fullCircle);
-        ctx.stroke();
-
-        if (progress > 0) {
-            ctx.beginPath();
-            ctx.lineWidth = ringWidth;
-            ctx.lineCap = 'round';
-            ctx.strokeStyle = '#0A84FF';
-            ctx.arc(center, center, ringRadius, startAngle, endAngle);
-            ctx.stroke();
-
-            ctx.fillStyle = '#0A84FF';
-            ctx.beginPath();
-            ctx.arc(
-                center + Math.cos(startAngle) * ringRadius,
-                center + Math.sin(startAngle) * ringRadius,
-                ringWidth / 2,
-                0,
-                fullCircle
-            );
-            if (typeof ctx.closePath === 'function') {
-                ctx.closePath();
-            }
-            ctx.fill();
-
-            ctx.beginPath();
-            ctx.arc(
-                center + Math.cos(endAngle) * ringRadius,
-                center + Math.sin(endAngle) * ringRadius,
-                ringWidth / 2,
-                0,
-                fullCircle
-            );
-            if (typeof ctx.closePath === 'function') {
-                ctx.closePath();
-            }
-            ctx.fill();
-        }
+        const paddedProgress = progress < 10 ? '00' + progress : progress < 100 ? '0' + progress : '' + progress;
+        this.progressRingSrc = '/common/images/progress_ring_' + paddedProgress + '.png';
     },
     onAddWater() {
         this.totalMl += this.defaultAmountMl;
         this.updateProgress();
-        this.drawProgressRing();
         this.isWaterMoving = true;
         this.statusText = '已记录 ' + this.defaultAmountMl + ' mL';
 

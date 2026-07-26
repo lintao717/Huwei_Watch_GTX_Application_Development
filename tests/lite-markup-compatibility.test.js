@@ -14,8 +14,9 @@ assert(!hml.includes('<div class="actions">'), 'Bottom actions must stay flat be
 assert(!hml.includes("{{ isWaterMoving ?"), 'Lite Wearable class selectors must not use data binding.');
 assert(hml.includes('{{ totalMl }}'), 'The drink total must be rendered as HML page state.');
 assert(hml.includes('onclick="onAddWater"'), 'The primary action must be a real HML click target.');
-assert(hml.includes('<canvas ref="progressCanvas"'), 'The progress ring should be drawn with Lite Wearable canvas for a crisp dynamic arc.');
-assert(!hml.includes('home_progress_ring.png'), 'The home progress ring must not be a static PNG texture.');
+assert(!hml.includes('<canvas'), 'The home screen should avoid Lite Canvas for the edge progress ring because arc caps render inconsistently in the emulator.');
+assert(hml.includes('<image class="progress-ring" src="{{ progressRingSrc }}"></image>'), 'The progress ring should use generated 454px assets selected by page state.');
+assert(!hml.includes('home_progress_ring.png'), 'The home progress ring must not use the old single static PNG texture.');
 assert(hml.includes('/common/images/water_drop.png'), 'The inline progress droplet must use a Lite Wearable visible PNG generated from the design SVG.');
 assert(hml.includes('/common/images/history.png'), 'The record action must use a Lite Wearable visible PNG generated from the design SVG.');
 assert(hml.includes('/common/images/settings.png'), 'The settings action must use a Lite Wearable visible PNG generated from the design SVG.');
