@@ -124,8 +124,14 @@ function cssRule(selector) {
 
 const imageDirectory = path.join('entry', 'src', 'main', 'js', 'MainAbility', 'common', 'images');
 const dropRule = cssRule('.drop');
-assert(dropRule.includes('width: 24px'), 'The water drop should be large enough to pair with the progress text.');
-assert(dropRule.includes('height: 24px'), 'The water drop should be large enough to pair with the progress text.');
+assert(dropRule.includes('width: 32px'), 'The water drop should be large enough to pair with the progress text.');
+assert(dropRule.includes('height: 32px'), 'The water drop should be large enough to pair with the progress text.');
+const historyIconRule = cssRule('.history-icon');
+const settingsIconRule = cssRule('.settings-icon');
+assert(historyIconRule.includes('width: 30px'), 'The record icon should not look undersized beside its label.');
+assert(historyIconRule.includes('height: 30px'), 'The record icon should not look undersized beside its label.');
+assert(settingsIconRule.includes('width: 30px'), 'The settings icon should not look undersized beside its label.');
+assert(settingsIconRule.includes('height: 30px'), 'The settings icon should not look undersized beside its label.');
 
 const amountRule = cssRule('.amount');
 const amountFontSize = Number(amountRule.match(/font-size:\s*(\d+)px/)[1]);
