@@ -29,9 +29,6 @@ export default {
         const center = 227;
         const ringRadius = 217;
         const ringWidth = 20;
-        const halfRingWidth = ringWidth / 2;
-        const outerRadius = ringRadius + halfRingWidth;
-        const innerRadius = ringRadius - halfRingWidth;
         const fullCircle = Math.PI * 2;
         const startAngle = -Math.PI / 2;
         const endAngle = progress >= 100 ? startAngle + fullCircle : startAngle + fullCircle * progress / 100;
@@ -43,32 +40,32 @@ export default {
         ctx.arc(center, center, ringRadius, 0, fullCircle);
         ctx.stroke();
 
-        if (progress >= 100) {
+        if (progress > 0) {
             ctx.beginPath();
             ctx.lineWidth = ringWidth;
             ctx.lineCap = 'round';
             ctx.strokeStyle = '#0A84FF';
-            ctx.arc(center, center, ringRadius, 0, fullCircle);
+            ctx.arc(center, center, ringRadius, startAngle, endAngle);
             ctx.stroke();
-        } else if (progress > 0) {
+
             const startCenterX = center + Math.cos(startAngle) * ringRadius;
             const startCenterY = center + Math.sin(startAngle) * ringRadius;
             const endCenterX = center + Math.cos(endAngle) * ringRadius;
             const endCenterY = center + Math.sin(endAngle) * ringRadius;
-            const startOuterX = center + Math.cos(startAngle) * outerRadius;
-            const startOuterY = center + Math.sin(startAngle) * outerRadius;
 
-            ctx.beginPath();
-            ctx.fillStyle = '#0A84FF';
-            ctx.moveTo(startOuterX, startOuterY);
-            ctx.arc(center, center, outerRadius, startAngle, endAngle);
-            ctx.arc(endCenterX, endCenterY, halfRingWidth, endAngle, endAngle + Math.PI);
-            ctx.arc(center, center, innerRadius, endAngle, startAngle, true);
-            ctx.arc(startCenterX, startCenterY, halfRingWidth, startAngle + Math.PI, startAngle);
-            if (typeof ctx.closePath === 'function') {
-                ctx.closePath();
+            if (progress < 100) {
+                ctx.beginPath();
+                ctx.lineWidth = ringWidth;
+                ctx.strokeStyle = '#0A84FF';
+                ctx.arc(startCenterX, startCenterY, 1, 0, fullCircle);
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.lineWidth = ringWidth;
+                ctx.strokeStyle = '#0A84FF';
+                ctx.arc(endCenterX, endCenterY, 1, 0, fullCircle);
+                ctx.stroke();
             }
-            ctx.fill();
         }
     },
     onAddWater() {

@@ -36,15 +36,6 @@ const context2d = {
             lineCap: this.lineCap
         });
     },
-    closePath() {
-        calls.push({ method: 'closePath' });
-    },
-    fill() {
-        calls.push({
-            method: 'fill',
-            fillStyle: this.fillStyle
-        });
-    },
     stroke() {
         calls.push({
             method: 'stroke',
@@ -73,28 +64,30 @@ const context = Object.assign({}, page.data, page, {
 page.drawProgressRing.call(context);
 
 const arcs = calls.filter((call) => call.method === 'arc');
-assert.strictEqual(arcs.length, 5, 'The progress ring should draw one background arc and a four-arc filled capsule segment.');
+assert.strictEqual(arcs.length, 4, 'The progress ring should draw a track, active arc, and two stroked cap circles.');
 
 const trackArc = arcs[0];
-const activeOuterArc = arcs[1];
-const activeEndCapArc = arcs[2];
-const activeInnerArc = arcs[3];
-const activeStartCapArc = arcs[4];
+const activeArc = arcs[1];
+const startCapArc = arcs[2];
+const endCapArc = arcs[3];
 
 assert(hml.includes('<canvas ref="progressCanvas" class="progress-canvas"></canvas>'), 'The progress ring should use code-driven Canvas, not image assets.');
 assert(!hml.includes('progress_ring_'), 'The home screen must not use generated progress ring PNG assets.');
 assert(css.includes('.progress-canvas { width: 454px; height: 454px; margin-left: 0px; margin-top: 0px; background-color: #FFFFFF; border-radius: 227px;'), 'The canvas should cover the full circular watch face.');
 assert(contextOptions && contextOptions.antialias === true, 'Lite Canvas should request antialiasing to smooth the edge ring.');
 assert.strictEqual(trackArc.strokeStyle, '#E8E8E8', 'The white-theme background track should use a subtle light gray.');
-assert.strictEqual(activeOuterArc.fillStyle, '#0A84FF', 'The active segment should be filled with the brand blue.');
-assert.strictEqual(activeOuterArc.radius, 227, 'The active segment outer edge should touch the 454px watch face edge.');
-assert.strictEqual(activeInnerArc.radius, 207, 'The active segment inner edge should preserve a 20px ring width.');
-assert.strictEqual(activeEndCapArc.radius, 10, 'The active segment end cap should be a real half-width circle.');
-assert.strictEqual(activeStartCapArc.radius, 10, 'The active segment start cap should be a real half-width circle.');
-assert.strictEqual(activeInnerArc.counterclockwise, true, 'The inner arc should reverse direction to close a filled annular segment.');
-assert(Math.abs(activeOuterArc.startAngle + Math.PI / 2) < 0.01, 'The active segment should start at 12 o’clock.');
-assert(Math.abs((activeOuterArc.endAngle - activeOuterArc.startAngle) - Math.PI * 2 * 0.6) < 0.01, 'At 60%, the active filled segment should cover 60% of the ring.');
-assert.strictEqual(calls.filter((call) => call.method === 'fill' && call.fillStyle === '#0A84FF').length, 1, 'The active segment should be one filled capsule path, not a stroked arc.');
-assert.strictEqual(calls.filter((call) => call.method === 'stroke' && call.strokeStyle === '#0A84FF').length, 0, 'The active segment must not rely on stroke lineCap for rounded ends.');
+assert.strictEqual(activeArc.strokeStyle, '#0A84FF', 'The active segment should use a visible blue stroked arc on Lite Canvas.');
+assert.strictEqual(activeArc.lineWidth, 20, 'The active segment should be a thick edge ring.');
+assert.strictEqual(activeArc.radius + activeArc.lineWidth / 2, 227, 'The active segment outer edge should touch the 454px watch face edge.');
+assert(Math.abs(activeArc.startAngle + Math.PI / 2) < 0.01, 'The active segment should start at 12 o’clock.');
+assert(Math.abs((activeArc.endAngle - activeArc.startAngle) - Math.PI * 2 * 0.6) < 0.01, 'At 60%, the active arc should cover 60% of the ring.');
+assert.strictEqual(startCapArc.strokeStyle, '#0A84FF', 'The start cap should be stroked in brand blue.');
+assert.strictEqual(endCapArc.strokeStyle, '#0A84FF', 'The end cap should be stroked in brand blue.');
+assert.strictEqual(startCapArc.lineWidth, 20, 'The start cap should use the ring width as stroke thickness.');
+assert.strictEqual(endCapArc.lineWidth, 20, 'The end cap should use the ring width as stroke thickness.');
+assert.strictEqual(startCapArc.radius, 1, 'The start cap should be a tiny stroked circle that Lite Canvas can render reliably.');
+assert.strictEqual(endCapArc.radius, 1, 'The end cap should be a tiny stroked circle that Lite Canvas can render reliably.');
+assert.strictEqual(calls.filter((call) => call.method === 'stroke' && call.strokeStyle === '#0A84FF').length, 3, 'The active segment should use one visible arc stroke plus two stroked cap circles.');
+assert.strictEqual(calls.filter((call) => call.method === 'fill').length, 0, 'The active segment must not rely on Lite Canvas fill paths.');
 
 console.log('Home progress ring Canvas pipeline passes.');
