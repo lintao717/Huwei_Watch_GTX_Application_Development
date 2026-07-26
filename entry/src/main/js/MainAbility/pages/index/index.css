@@ -1,14 +1,14 @@
 .page {
-  width: 466px;
-  height: 466px;
+  width: 100%;
+  height: 100%;
   background-color: #F2F2F7;
   flex-direction: column;
   align-items: center;
 }
-.time { margin-top: 20px; color: #1C1C1E; font-size: 16px; }
-.progress-stack { width: 280px; height: 280px; margin-top: 2px; }
-.progress-ring-image { width: 280px; height: 280px; }
-.progress-content { width: 230px; height: 132px; flex-direction: column; align-items: center; justify-content: center; }
+.time { margin-top: 14px; color: #1C1C1E; font-size: 16px; }
+.progress-stack { width: 78%; height: 62%; margin-top: 2px; }
+.progress-ring-image { width: 100%; height: 100%; }
+.progress-content { width: 74%; height: 44%; flex-direction: column; align-items: center; justify-content: center; }
 .eyebrow { color: #636366; font-size: 14px; }
 .amount-row { flex-direction: row; align-items: center; }
 .amount { color: #1C1C1E; font-size: 42px; }
@@ -17,10 +17,10 @@
 .cup-wrap { width: 78px; height: 86px; margin-top: 12px; flex-direction: column; align-items: center; justify-content: flex-end; }
 .cup-outline { width: 66px; height: 78px; border-width: 3px; border-color: #C7C7CC; border-radius: 14px; flex-direction: column; align-items: center; justify-content: flex-end; }
 .water-fill { width: 60px; height: 43px; margin-bottom: 3px; background-color: #72B7FF; border-radius: 10px; }
-.primary-button { width: 240px; height: 60px; margin-top: -28px; border-radius: 30px; background-color: #0A84FF; align-items: center; justify-content: center; }
+.primary-button { width: 66%; height: 60px; margin-top: -14px; border-radius: 30px; background-color: #0A84FF; align-items: center; justify-content: center; }
 .primary-button-text { color: #FFFFFF; font-size: 22px; }
 .status-text { height: 20px; margin-top: 8px; color: #636366; font-size: 14px; }
-.bottom-actions { width: 184px; margin-top: 10px; flex-direction: row; justify-content: space-between; }
+.bottom-actions { width: 56%; margin-top: 10px; flex-direction: row; justify-content: space-between; }
 .action { width: 72px; height: 54px; flex-direction: column; align-items: center; justify-content: center; }
 .action-icon { width: 24px; height: 24px; }
 .action-text { margin-top: 3px; color: #1C1C1E; font-size: 14px; }
