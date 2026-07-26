@@ -9,5 +9,5 @@ const hml = fs.readFileSync('entry/src/main/js/MainAbility/pages/index/index.hml
 });
 assert(!hml.includes('<button'), 'Lite Wearable HML must use tappable div elements, not button tags.');
 assert(!hml.includes("{{ isWaterMoving ?"), 'Lite Wearable class selectors must not use data binding.');
-assert(hml.includes('/common/images/home_progress_ring.png'), 'HML images must use the local common/images resource path.');
+assert(hml.includes('/common/images/home_screen_default.png'), 'HML must load the fixed 454px home visual from local common/images assets.');
 console.log('Lite Wearable markup compatibility passes.');
