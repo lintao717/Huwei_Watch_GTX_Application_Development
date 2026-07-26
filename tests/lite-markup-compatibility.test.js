@@ -8,7 +8,9 @@ const hml = fs.readFileSync('entry/src/main/js/MainAbility/pages/index/index.hml
     assert(!css.includes(unsupported), 'Lite Wearable CSS must not contain unsupported syntax: ' + unsupported);
 });
 assert(!hml.includes('<button'), 'Lite Wearable HML must use tappable div elements, not button tags.');
+assert(!hml.includes('<stack'), 'The home screen must not use stack because Lite Wearable clips nested stacked content.');
 assert(!hml.includes("{{ isWaterMoving ?"), 'Lite Wearable class selectors must not use data binding.');
 assert(hml.includes('{{ totalMl }}'), 'The drink total must be rendered as HML page state.');
 assert(hml.includes('onclick="onAddWater"'), 'The primary action must be a real HML click target.');
+assert(css.includes('background-image:'), 'The progress ring must be a CSS background so it cannot cover HML content.');
 console.log('Lite Wearable markup compatibility passes.');
