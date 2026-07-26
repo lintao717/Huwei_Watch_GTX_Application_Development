@@ -131,13 +131,14 @@ const amountRule = cssRule('.amount');
 const amountFontSize = Number(amountRule.match(/font-size:\s*(\d+)px/)[1]);
 assert(amountFontSize >= 48, 'The main drink number should have stronger visual weight.');
 
-['water_drop.svg', 'history.svg', 'settings.svg'].forEach((fileName) => {
-    const svg = fs.readFileSync(path.join(imageDirectory, fileName), 'utf8');
-    assert(svg.includes('<svg'), fileName + ' must be an SVG asset.');
-    assert(svg.includes('viewBox="0 0 24 24"'), fileName + ' must use the 24px icon viewBox.');
+['water_drop.png', 'history.png', 'settings.png'].forEach((fileName) => {
+    const icon = readPng(path.join(imageDirectory, fileName));
+    assert.strictEqual(icon.width, 96, fileName + ' should be rendered from the design SVG at 4x density.');
+    assert.strictEqual(icon.height, 96, fileName + ' should be rendered from the design SVG at 4x density.');
 });
 
-const waterDropSvg = fs.readFileSync(path.join(imageDirectory, 'water_drop.svg'), 'utf8');
-assert(waterDropSvg.includes('#0A84FF'), 'water_drop.svg should render as the blue brand droplet.');
+const waterDrop = readPng(path.join(imageDirectory, 'water_drop.png'));
+const bluePixels = countPixels(waterDrop, (r, g, b, a) => a > 80 && b > 180 && g > 100 && r < 80);
+assert(bluePixels > 1000, 'water_drop.png should render as the blue brand droplet, not a gray mark.');
 
 console.log('Home visual asset checks pass.');

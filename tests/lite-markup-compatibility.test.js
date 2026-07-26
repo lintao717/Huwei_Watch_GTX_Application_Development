@@ -16,8 +16,9 @@ assert(hml.includes('{{ totalMl }}'), 'The drink total must be rendered as HML p
 assert(hml.includes('onclick="onAddWater"'), 'The primary action must be a real HML click target.');
 assert(hml.includes('<canvas ref="progressCanvas"'), 'The progress ring should be drawn with Lite Wearable canvas for a crisp dynamic arc.');
 assert(!hml.includes('home_progress_ring.png'), 'The home progress ring must not be a static PNG texture.');
-assert(hml.includes('/common/images/water_drop.svg'), 'The inline progress droplet should verify SVG image support.');
-assert(hml.includes('/common/images/history.svg'), 'The record action should verify SVG image support.');
-assert(hml.includes('/common/images/settings.svg'), 'The settings action should verify SVG image support.');
+assert(hml.includes('/common/images/water_drop.png'), 'The inline progress droplet must use a Lite Wearable visible PNG generated from the design SVG.');
+assert(hml.includes('/common/images/history.png'), 'The record action must use a Lite Wearable visible PNG generated from the design SVG.');
+assert(hml.includes('/common/images/settings.png'), 'The settings action must use a Lite Wearable visible PNG generated from the design SVG.');
+assert(!hml.includes('.svg'), 'Lite Wearable image elements must not reference SVG directly because the emulator does not render them.');
 assert(!css.includes('background-image:'), 'The home screen must not rely on CSS background images for critical visuals.');
 console.log('Lite Wearable markup compatibility passes.');
