@@ -14,8 +14,10 @@ const context = Object.assign(state, page, { $t: () => '' });
 page.onInit.call(context);
 page.onAddWater.call(context);
 
-assert.strictEqual(context.totalMl, 1400, 'Adding the default amount should increase today total by 200 mL.');
-assert.strictEqual(context.progressText, '70%', 'Adding 200 mL to 1200 / 2000 should show 70% progress.');
-assert.strictEqual(context.isWaterMoving, true, 'Adding water should enable the short water feedback state.');
+assert.strictEqual(context.totalMl, 1200, 'Opening quick add should not immediately change today total.');
+assert.strictEqual(context.progressText, '60%', 'Opening quick add should not immediately change progress.');
+assert.strictEqual(context.isHomeView, false, 'The home primary action should open quick add.');
+assert.strictEqual(context.isQuickAddView, true, 'The quick add view should become visible.');
+assert.strictEqual(context.isWaterMoving, false, 'Opening quick add should not enable recorded-water feedback.');
 
 console.log('Home page add-water behavior passes.');

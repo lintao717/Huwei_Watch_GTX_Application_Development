@@ -11,3 +11,11 @@
 .history-text { width: 54px; height: 30px; margin-left: 173px; margin-top: 337px; color: #3A3A3C; font-size: 21px; }
 .settings-icon { width: 30px; height: 30px; margin-left: 249px; margin-top: 337px; }
 .settings-text { width: 54px; height: 30px; margin-left: 286px; margin-top: 337px; color: #3A3A3C; font-size: 21px; }
+.quick-time { width: 80px; height: 28px; margin-left: 187px; margin-top: 43px; color: #1C1C1E; font-size: 28px; text-align: center; }
+.quick-title { width: 160px; height: 36px; margin-left: 147px; margin-top: 103px; color: #1C1C1E; font-size: 26px; text-align: center; }
+.quick-option-100 { width: 240px; height: 52px; margin-left: 107px; margin-top: 160px; border-radius: 26px; background-color: #F3F3F3; align-items: center; justify-content: center; }
+.quick-option-300 { width: 240px; height: 52px; margin-left: 107px; margin-top: 280px; border-radius: 26px; background-color: #F3F3F3; align-items: center; justify-content: center; }
+.quick-option-text { color: #1C1C1E; font-size: 26px; text-align: center; }
+.quick-option-primary { width: 240px; height: 52px; margin-left: 107px; margin-top: 220px; border-radius: 26px; background-color: #0A84FF; align-items: center; justify-content: center; }
+.quick-option-primary-text { color: #FFFFFF; font-size: 26px; text-align: center; }
+.quick-cancel { width: 100px; height: 34px; margin-left: 177px; margin-top: 356px; color: #0A84FF; font-size: 24px; text-align: center; }

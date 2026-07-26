@@ -5,6 +5,8 @@ export default {
         targetMl: 2000,
         progressText: '60%',
         defaultAmountMl: 200,
+        isHomeView: true,
+        isQuickAddView: false,
         isWaterMoving: false,
         statusText: '下一次提醒 15:30'
     },
@@ -17,6 +19,14 @@ export default {
     updateProgress() {
         const progress = Math.min(100, Math.round(this.totalMl / this.targetMl * 100));
         this.progressText = progress + '%';
+    },
+    showHomeView() {
+        this.isHomeView = true;
+        this.isQuickAddView = false;
+    },
+    showQuickAddView() {
+        this.isHomeView = false;
+        this.isQuickAddView = true;
     },
     drawProgressRing() {
         if (!this.$refs || !this.$refs.progressCanvas) {
@@ -69,17 +79,37 @@ export default {
         }
     },
     onAddWater() {
-        this.totalMl += this.defaultAmountMl;
+        this.onOpenQuickAdd();
+    },
+    onOpenQuickAdd() {
+        this.showQuickAddView();
+    },
+    onCancelQuickAdd() {
+        this.showHomeView();
+        this.drawProgressRing();
+    },
+    addWaterAmount(amountMl) {
+        this.totalMl += amountMl;
         this.updateProgress();
+        this.showHomeView();
         this.drawProgressRing();
         this.isWaterMoving = true;
-        this.statusText = '已记录 ' + this.defaultAmountMl + ' mL';
+        this.statusText = '已记录 ' + amountMl + ' mL';
 
         if (typeof setTimeout === 'function') {
             setTimeout(() => {
                 this.isWaterMoving = false;
             }, 450);
         }
+    },
+    onQuickAdd100() {
+        this.addWaterAmount(100);
+    },
+    onQuickAdd200() {
+        this.addWaterAmount(200);
+    },
+    onQuickAdd300() {
+        this.addWaterAmount(300);
     },
     onOpenHistory() {
         this.statusText = '记录页将在下一步实现';

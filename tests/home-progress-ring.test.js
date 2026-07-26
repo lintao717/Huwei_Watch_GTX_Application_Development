@@ -71,7 +71,7 @@ const activeArc = arcs[1];
 const startCapArc = arcs[2];
 const endCapArc = arcs[3];
 
-assert(hml.includes('<canvas ref="progressCanvas" class="progress-canvas"></canvas>'), 'The progress ring should use code-driven Canvas, not image assets.');
+assert(hml.includes('<canvas if="{{ isHomeView }}" ref="progressCanvas" class="progress-canvas"></canvas>'), 'The progress ring should use code-driven Canvas, not image assets.');
 assert(!hml.includes('progress_ring_'), 'The home screen must not use generated progress ring PNG assets.');
 assert(css.includes('.progress-canvas { width: 454px; height: 454px; margin-left: 0px; margin-top: 0px; background-color: #FFFFFF; border-radius: 227px;'), 'The canvas should cover the full circular watch face.');
 assert(contextOptions && contextOptions.antialias === true, 'Lite Canvas should request antialiasing to smooth the edge ring.');
