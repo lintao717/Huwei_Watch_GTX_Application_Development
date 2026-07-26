@@ -105,6 +105,17 @@ export default {
         ctx.lineWidth = 3;
         ctx.strokeRect(125, 344, 21, 24);
         this.drawText(ctx, '记录', 157, 365, 22, '#3A3A3C', 'left');
+        for (let index = 0; index < 8; index++) {
+            const angle = Math.PI * 2 * index / 8;
+            const startX = 274 + Math.cos(angle) * 13;
+            const startY = 356 + Math.sin(angle) * 13;
+            const endX = 274 + Math.cos(angle) * 18;
+            const endY = 356 + Math.sin(angle) * 18;
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+            ctx.lineTo(endX, endY);
+            ctx.stroke();
+        }
         ctx.beginPath();
         ctx.arc(274, 356, 13, 0, Math.PI * 2);
         ctx.stroke();
