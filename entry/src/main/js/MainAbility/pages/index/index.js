@@ -27,18 +27,18 @@ export default {
         const ctx = canvas.getContext('2d');
         const progress = Math.min(100, Math.max(0, Math.round(this.totalMl / this.targetMl * 100)));
         const center = 227;
-        const ringRadius = 218;
+        const ringRadius = 214;
         const ringWidth = 18;
-        const fullCircle = 6.28;
+        const fullCircle = Math.PI * 2;
         const tinyGap = 0.18;
-        const startAngle = -1.12;
+        const startAngle = -Math.PI / 2;
         const maxSweep = fullCircle - tinyGap;
         const endAngle = startAngle + maxSweep * progress / 100;
 
         ctx.beginPath();
         ctx.lineWidth = ringWidth;
         ctx.lineCap = 'round';
-        ctx.strokeStyle = '#2E2748';
+        ctx.strokeStyle = '#E8E8E8';
         ctx.arc(center, center, ringRadius, 0, fullCircle);
         ctx.stroke();
 
