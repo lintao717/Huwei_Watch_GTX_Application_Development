@@ -26,22 +26,30 @@ export default {
         const canvas = this.$refs.progressCanvas;
         const ctx = canvas.getContext('2d');
         const progress = Math.min(100, Math.max(0, Math.round(this.totalMl / this.targetMl * 100)));
-        const startAngle = -1.08;
-        const maxSweep = 3.02;
+        const center = 227;
+        const ringRadius = 218;
+        const ringWidth = 18;
+        const fullCircle = 6.28;
+        const tinyGap = 0.18;
+        const startAngle = -1.12;
+        const maxSweep = fullCircle - tinyGap;
         const endAngle = startAngle + maxSweep * progress / 100;
 
         ctx.beginPath();
-        ctx.lineWidth = 2;
-        ctx.strokeStyle = '#E5E5EA';
-        ctx.arc(227, 227, 210, 0, 6.28);
+        ctx.lineWidth = ringWidth;
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = '#2E2748';
+        ctx.arc(center, center, ringRadius, 0, fullCircle);
         ctx.stroke();
 
-        ctx.beginPath();
-        ctx.lineWidth = 14;
-        ctx.lineCap = 'round';
-        ctx.strokeStyle = '#0A84FF';
-        ctx.arc(227, 227, 210, startAngle, endAngle);
-        ctx.stroke();
+        if (progress > 0) {
+            ctx.beginPath();
+            ctx.lineWidth = ringWidth;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = '#0A84FF';
+            ctx.arc(center, center, ringRadius, startAngle, endAngle);
+            ctx.stroke();
+        }
     },
     onAddWater() {
         this.totalMl += this.defaultAmountMl;
