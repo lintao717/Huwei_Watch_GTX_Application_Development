@@ -1,10 +1,10 @@
 .page { width: 454px; height: 454px; background-color: #F8F8FC; align-items: flex-start; justify-content: flex-start; }
 .progress-ring { width: 454px; height: 454px; margin-left: 0px; margin-top: 0px; }
 .time { width: 80px; height: 24px; margin-left: 187px; margin-top: 15px; color: #1C1C1E; font-size: 18px; text-align: center; }
-.amount { width: 138px; height: 58px; margin-left: 108px; margin-top: 126px; color: #1C1C1E; font-size: 43px; text-align: right; }
-.target { width: 118px; height: 32px; margin-left: 250px; margin-top: 146px; color: #8E8E93; font-size: 22px; }
-.drop { width: 12px; height: 12px; margin-left: 162px; margin-top: 205px; }
-.progress-text { width: 170px; height: 28px; margin-left: 182px; margin-top: 198px; color: #8E8E93; font-size: 20px; }
+.amount { width: 148px; height: 64px; margin-left: 99px; margin-top: 119px; color: #1C1C1E; font-size: 49px; text-align: right; }
+.target { width: 118px; height: 32px; margin-left: 254px; margin-top: 146px; color: #8E8E93; font-size: 22px; }
+.drop { width: 24px; height: 24px; margin-left: 158px; margin-top: 200px; }
+.progress-text { width: 170px; height: 28px; margin-left: 191px; margin-top: 198px; color: #8E8E93; font-size: 20px; }
 .add-button { width: 268px; height: 60px; margin-left: 93px; margin-top: 260px; border-radius: 30px; background-color: #0A84FF; align-items: center; justify-content: center; }
 .add-text { color: #FFFFFF; font-size: 25px; text-align: center; }
 .history-icon { width: 22px; height: 22px; margin-left: 145px; margin-top: 343px; }
