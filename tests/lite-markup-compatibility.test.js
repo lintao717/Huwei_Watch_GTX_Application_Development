@@ -9,6 +9,5 @@ const hml = fs.readFileSync('entry/src/main/js/MainAbility/pages/index/index.hml
 });
 assert(!hml.includes('<button'), 'Lite Wearable HML must use tappable div elements, not button tags.');
 assert(!hml.includes("{{ isWaterMoving ?"), 'Lite Wearable class selectors must not use data binding.');
-assert(hml.includes('<canvas'), 'The home screen must use a canvas for exact 454px drawing.');
-assert(hml.includes('ontouchstart="onCanvasTouch"'), 'The canvas must expose the home-screen touch handler.');
+assert(hml.includes('/common/images/home_screen_default.png'), 'Lite Wearable must render the tested local 454px home visual.');
 console.log('Lite Wearable markup compatibility passes.');
