@@ -15,8 +15,6 @@
     <div class="primary-button" onclick="onAddWater">
         <text class="primary-button-text">+{{ defaultAmountMl }} mL</text>
     </div>
-    <text class="status-text">{{ statusText }}</text>
-
     <div class="bottom-actions">
         <div class="action" onclick="onOpenHistory">
             <image class="action-icon" src="/common/images/history.png"></image>
