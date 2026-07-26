@@ -6,20 +6,20 @@
 
 | 语义 | 运行时文件 | 使用页面 | 显示尺寸 |
 |---|---|---|---:|
-| 水滴 | `water-drop.png` | 首页、提醒页 | 24 / 56 px |
-| 水杯 | `water-cup.png` | 空状态页 | 72 px |
+| 水滴 | `water_drop.png` | 首页、提醒页 | 24 / 56 px |
+| 水杯 | `water_cup.png` | 空状态页 | 72 px |
 | 记录 | `history.png` | 首页、记录页 | 24 px |
 | 设置 | `settings.png` | 首页、设置页 | 24 px |
 | 时间 | `clock.png` | 首页、设置页 | 22 px |
 | 提醒 | `bell.png` | 设置页 | 22 px |
-| 关闭提醒 | `bell-off.png` | 设置页 | 22 px |
+| 关闭提醒 | `bell_off.png` | 设置页 | 22 px |
 | 目标 | `target.png` | 设置页、统计页 | 22 px |
 | 统计 | `chart.png` | 统计页 | 24 px |
-| 达标 | `check-circle.png` | 达标页 | 56 px |
+| 达标 | `check_circle.png` | 达标页 | 56 px |
 | 编辑 | `edit.png` | 记录编辑页 | 22 px |
 | 删除 | `trash.png` | 记录编辑页 | 22 px |
-| 前进 | `chevron-right.png` | 设置列表 | 20 px |
-| 返回 | `chevron-left.png` | 二级页面 | 20 px |
+| 前进 | `chevron_right.png` | 设置列表 | 20 px |
+| 返回 | `chevron_left.png` | 二级页面 | 20 px |
 | 增加 | `plus.png` | 快速添加页 | 20 px |
 | 减少 | `minus.png` | 编辑页 | 20 px |
 | 关闭 | `close.png` | 弹窗 | 20 px |
