@@ -34,6 +34,9 @@ const context2d = {
             fillStyle: this.fillStyle
         });
     },
+    closePath() {
+        calls.push({ method: 'closePath' });
+    },
     stroke() {
         calls.push({
             method: 'stroke',
@@ -71,10 +74,12 @@ assert(css.includes('.page { width: 454px; height: 454px; background-color: #FFF
 assert(css.includes('.progress-canvas { width: 454px; height: 454px; margin-left: 0px; margin-top: 0px; background-color: #FFFFFF; border-radius: 227px;'), 'The canvas layer must also cover the full white circular face.');
 assert(css.includes('.time { width: 80px; height: 24px; margin-left: 187px; margin-top: 26px;'), 'The time label should move down enough to avoid touching the top ring.');
 assert(css.includes('.drop { width: 32px; height: 32px; margin-left: 153px; margin-top: 198px;'), 'The droplet should be lowered slightly to visually align with the progress text.');
-assert(trackArc.radius >= 210 && trackArc.radius <= 214, 'The background track should sit near the screen edge while leaving clipping-safe padding.');
-assert(activeArc.radius >= 210 && activeArc.radius <= 214, 'The active progress segment should sit near the screen edge while leaving clipping-safe padding.');
-assert(trackArc.lineWidth >= 18, 'The background track should be visually substantial.');
-assert(activeArc.lineWidth >= 18, 'The active progress segment should be visually substantial.');
+assert(trackArc.radius + trackArc.lineWidth / 2 >= 226.5, 'The background track outer edge should touch the 454px watch face edge.');
+assert(activeArc.radius + activeArc.lineWidth / 2 >= 226.5, 'The active segment outer edge should touch the 454px watch face edge.');
+assert(trackArc.radius + trackArc.lineWidth / 2 <= 227.5, 'The background track should not overshoot the 454px watch face.');
+assert(activeArc.radius + activeArc.lineWidth / 2 <= 227.5, 'The active segment should not overshoot the 454px watch face.');
+assert(trackArc.lineWidth >= 20, 'The background track should be thick enough to feel like an edge component.');
+assert(activeArc.lineWidth >= 20, 'The active progress segment should be thick enough to feel like an edge component.');
 assert.strictEqual(trackArc.strokeStyle, '#E8E8E8', 'The white-theme background track should use a subtle light gray.');
 assert.strictEqual(activeArc.strokeStyle, '#0A84FF', 'The active segment should use the brand blue.');
 assert.strictEqual(activeArc.lineCap, 'round', 'The active segment should use rounded ends.');
@@ -84,5 +89,6 @@ assert(activeArc.endAngle - activeArc.startAngle < 6.28, 'At 100%, the rounded p
 assert.strictEqual(startCap.radius, activeArc.lineWidth / 2, 'The start cap should match half the ring width.');
 assert.strictEqual(endCap.radius, activeArc.lineWidth / 2, 'The end cap should match half the ring width.');
 assert.strictEqual(calls.filter((call) => call.method === 'fill' && call.fillStyle === '#0A84FF').length, 2, 'The active segment should paint two blue circular cap fills as a Lite Canvas fallback.');
+assert.strictEqual(calls.filter((call) => call.method === 'closePath').length, 2, 'The active segment cap circles should be explicitly closed before filling on Lite Canvas.');
 
 console.log('Home progress ring drawing passes.');

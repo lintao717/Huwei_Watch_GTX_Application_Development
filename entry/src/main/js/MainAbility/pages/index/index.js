@@ -27,8 +27,8 @@ export default {
         const ctx = canvas.getContext('2d');
         const progress = Math.min(100, Math.max(0, Math.round(this.totalMl / this.targetMl * 100)));
         const center = 227;
-        const ringRadius = 212;
-        const ringWidth = 18;
+        const ringRadius = 217;
+        const ringWidth = 20;
         const fullCircle = Math.PI * 2;
         const tinyGap = 0.18;
         const startAngle = -Math.PI / 2;
@@ -59,6 +59,9 @@ export default {
                 0,
                 fullCircle
             );
+            if (typeof ctx.closePath === 'function') {
+                ctx.closePath();
+            }
             ctx.fill();
 
             ctx.beginPath();
@@ -69,6 +72,9 @@ export default {
                 0,
                 fullCircle
             );
+            if (typeof ctx.closePath === 'function') {
+                ctx.closePath();
+            }
             ctx.fill();
         }
     },
