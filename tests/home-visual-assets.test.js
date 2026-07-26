@@ -93,6 +93,28 @@ function countPixels(image, predicate) {
     return count;
 }
 
+function pixelBounds(image, predicate) {
+    let minX = image.width;
+    let minY = image.height;
+    let maxX = -1;
+    let maxY = -1;
+
+    for (let y = 0; y < image.height; y++) {
+        for (let x = 0; x < image.width; x++) {
+            const index = (y * image.width + x) * 4;
+            if (predicate(image.pixels[index], image.pixels[index + 1], image.pixels[index + 2], image.pixels[index + 3])) {
+                minX = Math.min(minX, x);
+                minY = Math.min(minY, y);
+                maxX = Math.max(maxX, x);
+                maxY = Math.max(maxY, y);
+            }
+        }
+    }
+
+    assert(maxX >= 0, 'Expected at least one matching pixel.');
+    return { minX, minY, maxX, maxY };
+}
+
 function cssRule(selector) {
     const css = fs.readFileSync('entry/src/main/js/MainAbility/pages/index/index.css', 'utf8');
     const match = css.match(new RegExp('\\' + selector + '\\s*\\{([^}]+)\\}'));
@@ -120,5 +142,7 @@ assert.strictEqual(progressRing.width, 454, 'home_progress_ring.png should match
 assert.strictEqual(progressRing.height, 454, 'home_progress_ring.png should match the 454px artboard.');
 const ringBluePixels = countPixels(progressRing, (r, g, b, a) => a > 80 && b > 180 && g > 90 && r < 80);
 assert(ringBluePixels > 3800, 'The progress ring should contain a clear blue rounded arc.');
+const ringBlueBounds = pixelBounds(progressRing, (r, g, b, a) => a > 80 && b > 180 && g > 90 && r < 80);
+assert(ringBlueBounds.maxX >= 438, 'The blue progress arc should sit close to the circular watch face edge.');
 
 console.log('Home visual asset checks pass.');
